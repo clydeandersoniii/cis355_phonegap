@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<body onload="loadDoc();">
+
+<div id="demo">
+</div>
+
+<script>
+function loadDoc() {
+  var id = getUrlVars()["id"];
+
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("demo").innerHTML =
+      this.responseText;
+    }
+  };
+  
+  var website = "https://csis.svsu.edu/~ceander1/crud_phonegap/delete.php?id=";
+  website = website.concat(id);
+  
+  xhttp.open("GET", website, true);
+  xhttp.send();
+}
+
+function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+        vars[key] = value;
+    });
+    return vars;
+}
+</script>
+
+</body>
+</html>
